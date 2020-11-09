@@ -18,6 +18,7 @@ public class Board {
                 this.squares[i][j] = new Square(this.getSquareColor(i, j));
             }
         }
+        this.setBoard();
     }
     
     private String getSquareColor(int i, int j) {
@@ -74,29 +75,29 @@ public class Board {
         return true;
     }
 
-    public void setBoard(Player[] players) {
+    public void setBoard() {
         int i = 0;
-        this.setPiece(i, 0, new Rook(players[0].getColor()));
-        this.setPiece(i, 1, new Knight(players[0].getColor()));
-        this.setPiece(i, 2, new Bishop(players[0].getColor()));
-        this.setPiece(i, 3, new Queen(players[0].getColor()));
-        this.setPiece(i, 4, new King(players[0].getColor()));
-        this.setPiece(i, 5, new Bishop(players[0].getColor()));
-        this.setPiece(i, 6, new Knight(players[0].getColor()));
-        this.setPiece(i, 7, new Rook(players[0].getColor()));
+        this.setPiece(i, 0, new Rook(Color.WHITE));
+        this.setPiece(i, 1, new Knight(Color.WHITE));
+        this.setPiece(i, 2, new Bishop(Color.WHITE));
+        this.setPiece(i, 3, new Queen(Color.WHITE));
+        this.setPiece(i, 4, new King(Color.WHITE));
+        this.setPiece(i, 5, new Bishop(Color.WHITE));
+        this.setPiece(i, 6, new Knight(Color.WHITE));
+        this.setPiece(i, 7, new Rook(Color.WHITE));
         for (int j = 0; j < Coordinate.DIMENSION; j++) {
-            this.setPiece(1, j, new Pawn(players[0].getColor()));
-            this.setPiece(Coordinate.DIMENSION - 2, j, new Pawn(players[1].getColor()));  
+            this.setPiece(1, j, new Pawn(Color.WHITE));
+            this.setPiece(Coordinate.DIMENSION - 2, j, new Pawn(Color.BLACK));  
         }
         i = Coordinate.DIMENSION - 1;
-        this.setPiece(i, 0, new Rook(players[1].getColor()));
-        this.setPiece(i, 1, new Knight(players[1].getColor()));
-        this.setPiece(i, 2, new Bishop(players[1].getColor()));
-        this.setPiece(i, 3, new Queen(players[1].getColor()));
-        this.setPiece(i, 4, new King(players[1].getColor()));
-        this.setPiece(i, 5, new Bishop(players[1].getColor()));
-        this.setPiece(i, 6, new Knight(players[1].getColor()));
-        this.setPiece(i, 7, new Rook(players[1].getColor()));
+        this.setPiece(i, 0, new Rook(Color.BLACK));
+        this.setPiece(i, 1, new Knight(Color.BLACK));
+        this.setPiece(i, 2, new Bishop(Color.BLACK));
+        this.setPiece(i, 3, new Queen(Color.BLACK));
+        this.setPiece(i, 4, new King(Color.BLACK));
+        this.setPiece(i, 5, new Bishop(Color.BLACK));
+        this.setPiece(i, 6, new Knight(Color.BLACK));
+        this.setPiece(i, 7, new Rook(Color.BLACK));
 	}
 
 	public void move(Coordinate origin, Coordinate destination) {
