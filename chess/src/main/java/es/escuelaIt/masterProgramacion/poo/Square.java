@@ -10,9 +10,16 @@ public class Square {
 
     private String color;
 
-    public Square(String color) {
-        this.color = color;
+    private Coordinate coordinate;
+
+    public Square(Coordinate coordinate) {
         this.piece = null;
+        this.coordinate = coordinate;
+        if ((this.coordinate.getRow() + this.coordinate.getColumn()) % 2 == 0) {
+            this.color = Square.DARK;
+        } else {
+            this.color = Square.LIGHT;
+        }
     }
 
 	public boolean isEmpty() {

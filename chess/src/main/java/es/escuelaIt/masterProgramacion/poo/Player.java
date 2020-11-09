@@ -23,8 +23,9 @@ public class Player {
                 destination.read("Choose an square to move:");
                 isValid = board.isValidMovement(origin, destination);
             }
-            if (!isValid)
+            if (!isValid) {
                 console.writeln("Invalid movement!");
+            }
         } while (!isValid);
         board.move(origin, destination);
     }
