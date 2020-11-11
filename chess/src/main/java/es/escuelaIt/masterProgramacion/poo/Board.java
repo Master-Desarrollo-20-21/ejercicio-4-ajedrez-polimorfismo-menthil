@@ -42,7 +42,7 @@ public class Board {
         for (int i = Coordinate.DIMENSION - 1; i >= 0 ; i--) {
             console.write((i+1) + " ");
             for (int j = 0; j < Coordinate.DIMENSION; j++) {
-                this.console.write(this.squares[i][j].toString());
+                this.console.write(this.getSquare(new Coordinate(i, j)).toString());
             }
             this.console.writeln();
         }
@@ -67,15 +67,7 @@ public class Board {
 	}
 
 	public boolean isFull(Coordinate origin, Color color) {
-        if (this.getSquare(origin).isEmpty()) {
-            this.console.writeln("There is no piece in this square");
-            return false;
-        }
-        if (this.getPiece(origin).getColor() != color) {
-            this.console.writeln("This piece is not yours!");
-            return false;
-        }
-        return true;
+        return this.getSquare(origin).isFull(color);
 	}
 
 	public boolean isValidMovement(Coordinate origin, Coordinate destination) {

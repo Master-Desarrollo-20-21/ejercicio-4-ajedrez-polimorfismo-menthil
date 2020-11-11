@@ -43,6 +43,10 @@ public abstract class Piece {
         return origin.getInBetween(destination);
     }
 
+	public boolean isColor(Color color) {
+		return this.color == color;
+	}
+
     public Color getColor() {
         return this.color;
     }

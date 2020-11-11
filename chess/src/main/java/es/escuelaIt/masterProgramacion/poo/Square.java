@@ -1,5 +1,7 @@
 package es.escuelaIt.masterProgramacion.poo;
 
+import es.escuelaIt.masterProgramacion.poo.utils.Console;
+
 public class Square {
 
     public final static String DARK = "::";
@@ -36,6 +38,19 @@ public class Square {
     public void move(Square square) {
         square.setPiece(this.getPiece());
         this.piece = null;
+    }
+
+    public boolean isFull(Color color) {
+        Console console = new Console();
+        if (this.isEmpty()) {
+            console.writeln("There is no piece in this square");
+            return false;
+        }
+        if (!this.getPiece().isColor(color)) {
+            console.writeln("This piece is not yours!");
+            return false;
+        }
+        return true;
     }
 
     public Piece getPiece() {
