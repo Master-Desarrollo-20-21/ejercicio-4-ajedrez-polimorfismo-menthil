@@ -31,7 +31,12 @@ public class Square {
             return this.getPiece().isKing(color);
         }
 		return false;
-	}
+    }
+    
+    public void move(Square square) {
+        square.setPiece(this.getPiece());
+        this.piece = null;
+    }
 
     public Piece getPiece() {
         return this.piece;

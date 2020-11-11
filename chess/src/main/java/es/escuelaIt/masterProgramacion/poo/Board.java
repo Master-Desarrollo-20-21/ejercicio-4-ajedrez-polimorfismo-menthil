@@ -97,8 +97,7 @@ public class Board {
     }
 
 	public void move(Coordinate origin, Coordinate destination) {
-        this.setPiece(destination, this.getPiece(origin));
-        this.setPiece(origin, null);
+        this.getSquare(origin).move(this.getSquare(destination));
     }
 
     private Square getSquare(Coordinate coordinate) {
