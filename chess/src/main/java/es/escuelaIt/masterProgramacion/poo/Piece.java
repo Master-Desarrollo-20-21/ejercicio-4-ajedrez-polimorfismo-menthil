@@ -35,6 +35,8 @@ public abstract class Piece {
         this.symbol = symbol;
     }
 
+    public abstract boolean isKing(Color color);
+
     public abstract boolean isValidMovement(Coordinate origin, Coordinate destination, Square square);
 
     public List<Coordinate> getCoordinates(Coordinate origin, Coordinate destination) {

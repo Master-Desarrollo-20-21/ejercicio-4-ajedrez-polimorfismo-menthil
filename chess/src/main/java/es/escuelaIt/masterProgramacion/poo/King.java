@@ -29,4 +29,9 @@ public class King extends Piece {
         return new ArrayList<>();
     }
 
+    @Override
+    public boolean isKing(Color color) {
+        return this.color == color;
+    }
+
 }

@@ -18,4 +18,9 @@ public class Rook extends Piece {
             return false;
         return true;
     }
+
+    @Override
+    public boolean isKing(Color color) {
+        return false;
+    }
 }

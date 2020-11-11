@@ -26,6 +26,13 @@ public class Square {
 		return this.piece == null;
 	}
 
+	public boolean isKing(Color color) {
+        if (!this.isEmpty()) {
+            return this.getPiece().isKing(color);
+        }
+		return false;
+	}
+
     public Piece getPiece() {
         return this.piece;
     }

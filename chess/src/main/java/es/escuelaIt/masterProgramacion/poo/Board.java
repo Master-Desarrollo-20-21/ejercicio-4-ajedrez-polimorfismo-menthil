@@ -56,10 +56,9 @@ public class Board {
     }
 
 	public boolean isCheckmate(Color color) {
-        King king = new King(color);
         for (int i = 0; i < Coordinate.DIMENSION; i++) {
             for (int j = 0; j < Coordinate.DIMENSION; j++) {
-                if (!this.squares[i][j].isEmpty() && this.getPiece(new Coordinate(i, j)).equals(king)) {
+                if (this.getSquare(new Coordinate(i, j)).isKing(color)) {
                     return false;
                 }
             }

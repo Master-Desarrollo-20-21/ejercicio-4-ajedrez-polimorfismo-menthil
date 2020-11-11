@@ -41,4 +41,9 @@ public class Pawn extends Piece {
         }
         return square.isEmpty();
     }
+
+    @Override
+    public boolean isKing(Color color) {
+        return false;
+    }
 }

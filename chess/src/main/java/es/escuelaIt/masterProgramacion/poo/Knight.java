@@ -28,4 +28,9 @@ public class Knight extends Piece {
     public List<Coordinate> getCoordinates(Coordinate origin, Coordinate destination) {
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean isKing(Color color) {
+        return false;
+    }
 }
