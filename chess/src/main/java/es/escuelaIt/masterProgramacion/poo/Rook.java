@@ -1,6 +1,6 @@
 package es.escuelaIt.masterProgramacion.poo;
 
-public class Rook extends BasicPiece {
+public class Rook extends Piece {
 
     private final static int WHITE = 9814;
 

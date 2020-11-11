@@ -1,6 +1,6 @@
 package es.escuelaIt.masterProgramacion.poo;
 
-public class Queen extends BasicPiece {
+public class Queen extends Piece {
 
     private final static int WHITE = 9813;
 

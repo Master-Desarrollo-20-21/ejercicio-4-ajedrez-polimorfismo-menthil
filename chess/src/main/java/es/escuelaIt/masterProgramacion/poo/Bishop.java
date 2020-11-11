@@ -1,6 +1,6 @@
 package es.escuelaIt.masterProgramacion.poo;
 
-public class Bishop extends BasicPiece {
+public class Bishop extends Piece {
 
     private final static int WHITE = 9815;
 

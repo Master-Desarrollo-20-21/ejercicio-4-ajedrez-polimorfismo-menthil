@@ -1,6 +1,6 @@
 package es.escuelaIt.masterProgramacion.poo;
 
-public class Pawn extends BasicPiece {
+public class Pawn extends Piece {
 
     private final static int WHITE = 9817;
 

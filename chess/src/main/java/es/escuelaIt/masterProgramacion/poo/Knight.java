@@ -3,7 +3,7 @@ package es.escuelaIt.masterProgramacion.poo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Knight extends BasicPiece {
+public class Knight extends Piece {
 
     private final static int WHITE = 9816;
 
