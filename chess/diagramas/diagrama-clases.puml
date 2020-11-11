@@ -1,0 +1,85 @@
+@startuml
+
+title Chess - Modelo de clases
+
+Class Chess
+
+Chess *--> Board
+Chess *--> Player
+Chess ..> Console
+Chess ..> Color
+
+Class Board
+
+Board *--> Square
+Board ..> Console
+Board --> Color
+Board --> Coordinate
+Board ..> Piece
+Board ..> King
+Board ..> Queen
+Board ..> Rook
+Board ..> Bishop
+Board ..> Knight
+Board ..> Pawn
+
+Class Player
+
+Player *--> Color
+Player --> Board
+Player ..> Console
+Player ..> Coordinate
+
+Class Console
+
+Class Color
+
+Class Square
+
+Square *--> Piece
+Square *--> Color
+Square *--> Coordinate
+
+Class Coordinate
+
+Coordinate ..> Console
+Coordinate ..> LimitedIntDialog
+
+Class Piece
+
+Piece *--> Color
+Piece --> Coordinate
+Piece --> Square
+
+Class King
+
+Piece <|-- King
+
+Class Queen
+
+Piece <|-- Queen
+
+Class Rook
+
+Piece <|-- Rook
+
+Class Bishop
+
+Piece <|-- Bishop
+
+Class Knight
+
+Piece <|-- Knight
+
+Class Pawn
+
+Piece <|-- Pawn
+
+Class LimitedIntDialog
+
+LimitedIntDialog *--> ClosedInterval
+LimitedIntDialog ..> Console
+
+Class ClosedInterval
+
+@enduml

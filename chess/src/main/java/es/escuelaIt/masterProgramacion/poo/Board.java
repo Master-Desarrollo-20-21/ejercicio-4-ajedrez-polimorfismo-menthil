@@ -29,10 +29,10 @@ public class Board {
                 new King(color), new Bishop(color), new Knight(color), new Rook(color) 
             };
             for (int i = 0; i < pieces.length; i++) {
-                this.setPiece(initialRow, i, pieces[i]);
+                this.setPiece(new Coordinate(initialRow, i), pieces[i]);
             }
             for (int j = 0; j < Coordinate.DIMENSION; j++) {
-                this.setPiece(initialRow + color.getIncrement(), j, new Pawn(color));
+                this.setPiece(new Coordinate(initialRow + color.getIncrement(), j), new Pawn(color));
             }
         }
 	}
@@ -59,7 +59,7 @@ public class Board {
         King king = new King(color);
         for (int i = 0; i < Coordinate.DIMENSION; i++) {
             for (int j = 0; j < Coordinate.DIMENSION; j++) {
-                if (!this.squares[i][j].isEmpty() && this.getPiece(i, j).equals(king)) {
+                if (!this.squares[i][j].isEmpty() && this.getPiece(new Coordinate(i, j)).equals(king)) {
                     return false;
                 }
             }
@@ -67,7 +67,7 @@ public class Board {
 		return true;
 	}
 
-	public boolean full(Coordinate origin, Color color) {
+	public boolean isFull(Coordinate origin, Color color) {
         if (this.getSquare(origin).isEmpty()) {
             this.console.writeln("There is no piece in this square");
             return false;
@@ -106,19 +106,11 @@ public class Board {
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }
 
-    private Piece getPiece(int i, int j) {
-        return this.squares[i][j].getPiece();
-    }
-
     private Piece getPiece(Coordinate coordinate) {
-        return this.getPiece(coordinate.getRow(), coordinate.getColumn());
-    }
-
-    private void setPiece(int i, int j, Piece piece) {
-        this.squares[i][j].setPiece(piece);
+        return this.getSquare(coordinate).getPiece();
     }
 
     private void setPiece(Coordinate coordinate, Piece piece) {
-        this.setPiece(coordinate.getRow(), coordinate.getColumn(), piece);
+        this.getSquare(coordinate).setPiece(piece);
     }
 }

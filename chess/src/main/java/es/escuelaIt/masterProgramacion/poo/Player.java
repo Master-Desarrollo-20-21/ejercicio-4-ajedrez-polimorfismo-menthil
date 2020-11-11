@@ -18,7 +18,7 @@ public class Player {
         Coordinate destination = new Coordinate();
         do {
             origin.read("Choose a piece to move:");
-            isValid = board.full(origin, this.color);
+            isValid = board.isFull(origin, this.color);
             if (isValid) {
                 destination.read("Choose an square to move:");
                 isValid = board.isValidMovement(origin, destination);
