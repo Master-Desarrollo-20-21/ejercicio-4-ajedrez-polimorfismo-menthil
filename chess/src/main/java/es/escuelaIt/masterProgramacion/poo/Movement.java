@@ -1,5 +1,8 @@
 package es.escuelaIt.masterProgramacion.poo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Movement {
     
     private Coordinate origin;
@@ -55,5 +58,12 @@ public class Movement {
 
 	public int getDestinationRow() {
 		return this.destination.getRow();
+	}
+
+	public List<Coordinate> getPath() {
+        if (this.checkPath) {
+            return this.origin.getInBetween(this.destination);
+        }
+        return new ArrayList<>();
 	}
 }

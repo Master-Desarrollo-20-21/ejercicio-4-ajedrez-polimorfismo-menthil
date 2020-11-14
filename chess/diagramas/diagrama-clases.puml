@@ -37,8 +37,7 @@ Enum Color
 
 Class Square
 
-Square *--> Piece
-Square *--> Color
+Square o--> Piece
 Square *--> Coordinate
 Square --> Movement
 Square ..> Console
@@ -59,7 +58,6 @@ Enum MovementType
 Class Piece
 
 Piece *--> Color
-Piece --> Coordinate
 Piece --> Movement
 
 Class King

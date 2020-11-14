@@ -1,8 +1,5 @@
 package es.escuelaIt.masterProgramacion.poo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Knight extends Piece {
 
     private final static int WHITE = 9816;
@@ -19,11 +16,6 @@ public class Knight extends Piece {
             return false;
         }
         return movement.getDistance() == 3;
-    }
-
-    @Override
-    public List<Coordinate> getCoordinates(Coordinate origin, Coordinate destination) {
-        return new ArrayList<>();
     }
 
     @Override

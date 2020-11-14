@@ -1,8 +1,5 @@
 package es.escuelaIt.masterProgramacion.poo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class King extends Piece {
 
     private final static int WHITE = 9812;
@@ -19,11 +16,6 @@ public class King extends Piece {
             return false;
         }
         return movement.inColumn() || movement.inRow() || movement.inDiagonal();
-    }
-
-    @Override
-    public List<Coordinate> getCoordinates(Coordinate origin, Coordinate destination) {
-        return new ArrayList<>();
     }
 
     @Override

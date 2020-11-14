@@ -1,6 +1,5 @@
 package es.escuelaIt.masterProgramacion.poo;
 
-import java.util.List;
 
 public abstract class Piece {
     
@@ -40,10 +39,6 @@ public abstract class Piece {
     }
 
     public abstract boolean isValidMovement(Movement movement);
-
-    public List<Coordinate> getCoordinates(Coordinate origin, Coordinate destination) {
-        return origin.getInBetween(destination);
-    }
     
     public abstract boolean isKing(Color color);
 
