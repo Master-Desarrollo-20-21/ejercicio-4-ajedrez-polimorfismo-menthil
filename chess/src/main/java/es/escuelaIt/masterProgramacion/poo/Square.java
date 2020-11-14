@@ -24,22 +24,6 @@ public class Square {
         }
     }
 
-	public boolean isEmpty() {
-		return this.piece == null;
-	}
-
-	public boolean isKing(Color color) {
-        if (!this.isEmpty()) {
-            return this.getPiece().isKing(color);
-        }
-		return false;
-    }
-    
-    public void move(Square square) {
-        square.setPiece(this.getPiece());
-        this.piece = null;
-    }
-
     public boolean isFull(Color color) {
         Console console = new Console();
         if (this.isEmpty()) {
@@ -51,6 +35,22 @@ public class Square {
             return false;
         }
         return true;
+    }
+
+	public boolean isEmpty() {
+		return this.piece == null;
+	}
+    
+    public void move(Square square) {
+        square.setPiece(this.getPiece());
+        this.piece = null;
+    }
+
+	public boolean isKing(Color color) {
+        if (!this.isEmpty()) {
+            return this.getPiece().isKing(color);
+        }
+		return false;
     }
 
     public Piece getPiece() {

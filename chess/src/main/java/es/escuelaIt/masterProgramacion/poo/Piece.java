@@ -35,17 +35,17 @@ public abstract class Piece {
         this.symbol = symbol;
     }
 
-    public abstract boolean isKing(Color color);
+	public boolean isColor(Color color) {
+		return this.color == color;
+    }
 
     public abstract boolean isValidMovement(Coordinate origin, Coordinate destination, Square square);
 
     public List<Coordinate> getCoordinates(Coordinate origin, Coordinate destination) {
         return origin.getInBetween(destination);
     }
-
-	public boolean isColor(Color color) {
-		return this.color == color;
-	}
+    
+    public abstract boolean isKing(Color color);
 
     public Color getColor() {
         return this.color;

@@ -8,10 +8,7 @@ public class Board {
 
     private Square[][] squares;
 
-    private Console console;
-
     public Board() {
-        this.console = new Console();
         this.squares = new Square[Coordinate.DIMENSION][Coordinate.DIMENSION];
         for (int i = 0; i < Coordinate.DIMENSION; i++) {
             for (int j = 0; j < Coordinate.DIMENSION; j++) {
@@ -35,36 +32,26 @@ public class Board {
                 this.setPiece(new Coordinate(initialRow + color.getIncrement(), j), new Pawn(color));
             }
         }
-	}
-
+    }
+    
     public void show() {
-        this.console.writeln();
+        Console console = new Console();
+        console.writeln();
         for (int i = Coordinate.DIMENSION - 1; i >= 0 ; i--) {
             console.write((i+1) + " ");
             for (int j = 0; j < Coordinate.DIMENSION; j++) {
-                this.console.write(this.getSquare(new Coordinate(i, j)).toString());
+                console.write(this.getSquare(new Coordinate(i, j)).toString());
             }
-            this.console.writeln();
+            console.writeln();
         }
-        this.console.writeln();
-        this.console.write("  ");
+        console.writeln();
+        console.write("  ");
         for (int i = 1; i <= Coordinate.DIMENSION; i++) {
-            this.console.write(i + " ");
+            console.write(i + " ");
         }
-        this.console.writeln();
-        this.console.writeln();
+        console.writeln();
+        console.writeln();
     }
-
-	public boolean isCheckmate(Color color) {
-        for (int i = 0; i < Coordinate.DIMENSION; i++) {
-            for (int j = 0; j < Coordinate.DIMENSION; j++) {
-                if (this.getSquare(new Coordinate(i, j)).isKing(color)) {
-                    return false;
-                }
-            }
-        }
-		return true;
-	}
 
 	public boolean isFull(Coordinate origin, Color color) {
         return this.getSquare(origin).isFull(color);
@@ -91,6 +78,20 @@ public class Board {
 	public void move(Coordinate origin, Coordinate destination) {
         this.getSquare(origin).move(this.getSquare(destination));
     }
+
+	public boolean isCheckmate(Color color) {
+        for (int i = 0; i < Coordinate.DIMENSION; i++) {
+            for (int j = 0; j < Coordinate.DIMENSION; j++) {
+                if (this.getSquare(new Coordinate(i, j)).isKing(color)) {
+                    return false;
+                }
+            }
+        }
+		return true;
+    }
+    
+
+    
 
     private Square getSquare(Coordinate coordinate) {
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
