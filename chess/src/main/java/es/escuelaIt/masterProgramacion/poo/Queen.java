@@ -19,9 +19,4 @@ public class Queen extends Piece {
         }
         return false;
     }
-
-    @Override
-    public boolean isKing(Color color) {
-        return false;
-    }
 }

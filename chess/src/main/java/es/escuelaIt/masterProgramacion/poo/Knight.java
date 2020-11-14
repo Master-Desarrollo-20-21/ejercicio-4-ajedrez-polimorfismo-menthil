@@ -18,9 +18,4 @@ public class Knight extends Piece {
         }
         return movement.getDistance() == 3;
     }
-
-    @Override
-    public boolean isKing(Color color) {
-        return false;
-    }
 }

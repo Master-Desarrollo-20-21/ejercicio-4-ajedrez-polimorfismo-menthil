@@ -55,9 +55,4 @@ public class Pawn extends Piece {
             return  movement.getDistance() == 1 && (movement.getOriginRow() - 1) == movement.getDestinationRow();
         }
     }
-
-    @Override
-    public boolean isKing(Color color) {
-        return false;
-    }
 }

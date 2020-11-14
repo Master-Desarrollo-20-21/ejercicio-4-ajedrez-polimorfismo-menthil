@@ -34,7 +34,9 @@ public abstract class Piece {
 
     public abstract boolean isValidMovement(Movement movement);
     
-    public abstract boolean isKing(Color color);
+    public boolean isKing(Color color) {
+        return false;
+    }
 
     @Override
     public String toString() {
