@@ -45,12 +45,14 @@ public class Coordinate {
 
     public List<Coordinate> getInBetween(Coordinate coordinate) {
         assert this.inColumn(coordinate) || this.inRow(coordinate) || this.inDiagonal(coordinate);
-        if (this.inColumn(coordinate))
+        if (this.inColumn(coordinate)) {
             return this.getInBetweenInColumn(coordinate);
-        if (this.inRow(coordinate))
+        }
+        if (this.inRow(coordinate)) {
             return this.getInBetweenInRow(coordinate);
-        else        
+        } else {
             return this.getInBetweenInDiagonal(coordinate);
+        }
     }
 
     private List<Coordinate> getInBetweenInDiagonal(Coordinate coordinate) {
@@ -67,10 +69,11 @@ public class Coordinate {
         }
         for (int i = 1; i < to.getRow() - from.getRow(); i++) {
             int column = from.getColumn();
-            if (from.getColumn() > to.getColumn())
+            if (from.getColumn() > to.getColumn()) {
                 column -= i;
-            else   
+            } else {
                 column += i;
+            }
             coordinates.add(new Coordinate(i + from.getRow(), column));
         }
         return coordinates;

@@ -22,6 +22,7 @@ Board ..> Bishop
 Board ..> Knight
 Board ..> Pawn
 Board ..> Console
+Board ..> Movement
 
 Class Player
 
@@ -39,15 +40,21 @@ Class Square
 Square *--> Piece
 Square *--> Color
 Square *--> Coordinate
+Square --> Movement
 Square ..> Console
-Square ..> Movement
+Square ..> MovementType
 
 Class Coordinate
 
 Coordinate ..> Console
 Coordinate ..> LimitedIntDialog
 
-Enum Movement
+Class Movement
+
+Movement *--> Coordinate
+Movement *--> MovementType
+
+Enum MovementType 
 
 Class Piece
 

@@ -41,18 +41,17 @@ public class Square {
 		return this.piece == null;
     }
     
-    public boolean isValidMovement(Square square) {
-        Movement movement;
+    public boolean isValidMovement(Square square, Movement movement) {
         if (square.isEmpty()) {
-            movement = Movement.EMPTY_SQUARE;
+            movement.setType(MovementType.EMPTY_SQUARE);
         } else {
             if (!square.piece.isColor(this.piece.getColor())) {
-                movement = Movement.CAPTURE;
+                movement.setType(MovementType.CAPTURE);
             } else {
                 return false;
             }
         }
-        return this.piece.isValidMovement(this.coordinate, square.coordinate, movement);
+        return this.piece.isValidMovement(movement);
     }
     
     public void move(Square square) {

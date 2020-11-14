@@ -14,11 +14,11 @@ public class King extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Coordinate origin, Coordinate destination, Movement movement) {
-        if (origin.getDistance(destination) != 1) {
+    public boolean isValidMovement(Movement movement) {
+        if (movement.getDistance() != 1) {
             return false;
         }
-        return origin.inColumn(destination) || origin.inRow(destination) || origin.inDiagonal(destination);
+        return movement.inColumn() || movement.inRow() || movement.inDiagonal();
     }
 
     @Override

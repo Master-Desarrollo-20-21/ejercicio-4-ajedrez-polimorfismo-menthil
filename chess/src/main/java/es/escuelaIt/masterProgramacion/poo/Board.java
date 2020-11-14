@@ -58,7 +58,8 @@ public class Board {
 	}
 
 	public boolean isValidMovement(Coordinate origin, Coordinate destination) {
-        if (this.getSquare(origin).isValidMovement(this.getSquare(destination))) {
+        Movement movement = new Movement(origin, destination);
+        if (this.getSquare(origin).isValidMovement(this.getSquare(destination), movement)) {
             Piece piece = this.getPiece(origin);
             List<Coordinate> coordinates = piece.getCoordinates(origin, destination);
             return this.isEmptyPath(coordinates);

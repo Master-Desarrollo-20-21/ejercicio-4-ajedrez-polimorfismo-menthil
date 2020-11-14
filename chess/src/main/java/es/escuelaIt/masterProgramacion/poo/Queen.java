@@ -11,8 +11,9 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Coordinate origin, Coordinate destination, Movement movement) {
-        return origin.inColumn(destination) || origin.inRow(destination) || origin.inDiagonal(destination);
+    public boolean isValidMovement(Movement movement) {
+        movement.checkPath();
+        return movement.inColumn() || movement.inRow() || movement.inDiagonal();
     }
 
     @Override

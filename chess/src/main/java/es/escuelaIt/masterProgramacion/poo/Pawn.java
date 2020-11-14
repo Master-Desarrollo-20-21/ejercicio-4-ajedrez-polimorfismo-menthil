@@ -11,44 +11,45 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Coordinate origin, Coordinate destination, Movement movement) {
-        return this.isValidColumnMovement(origin, destination, movement) ||
-               this.isValidDiagonalMovement(origin, destination, movement);
+    public boolean isValidMovement(Movement movement) {
+        return this.isValidColumnMovement(movement) ||
+               this.isValidDiagonalMovement(movement);
     }
 
-    private boolean isValidColumnMovement(Coordinate origin, Coordinate destination, Movement movement) {
-        if (!origin.inColumn(destination)) {
+    private boolean isValidColumnMovement(Movement movement) {
+        if (!movement.inColumn()) {
             return false;
         }
-        if (!movement.equals(Movement.EMPTY_SQUARE)) {
+        if (!movement.isEmptySquare()) {
             return false;
         }
-        int distance = origin.getDistance(destination);
+        int distance = movement.getDistance();
         if (distance > 2 || distance == 0) {
             return false;
         }
         if (distance == 2) {
-            if (this.color == Color.WHITE && origin.getRow() != 1) {
+            movement.checkPath();
+            if (this.color == Color.WHITE && movement.getOriginRow() != 1) {
                 return false;
             }
-            if (this.color == Color.BLACK && origin.getRow() != Coordinate.DIMENSION - 2) {
+            if (this.color == Color.BLACK && movement.getOriginRow() != Coordinate.DIMENSION - 2) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean isValidDiagonalMovement(Coordinate origin, Coordinate destination, Movement movement) {
-        if (!origin.inDiagonal(destination)) {
+    private boolean isValidDiagonalMovement(Movement movement) {
+        if (!movement.inDiagonal()) {
             return false;
         }
-        if (!movement.equals(Movement.CAPTURE)) {
+        if (!movement.isCapture()) {
             return false;
         }
         if (this.color == Color.WHITE) {
-            return  origin.getDistance(destination) == 1 && (origin.getRow() + 1) == destination.getRow();
+            return  movement.getDistance() == 1 && (movement.getOriginRow() + 1) == movement.getDestinationRow();
         } else {
-            return  origin.getDistance(destination) == 1 && (origin.getRow() - 1) == destination.getRow();
+            return  movement.getDistance() == 1 && (movement.getOriginRow() - 1) == movement.getDestinationRow();
         }
     }
 
