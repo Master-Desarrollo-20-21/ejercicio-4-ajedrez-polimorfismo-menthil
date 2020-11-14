@@ -39,7 +39,7 @@ public abstract class Piece {
 		return this.color == color;
     }
 
-    public abstract boolean isValidMovement(Coordinate origin, Coordinate destination, Square square);
+    public abstract boolean isValidMovement(Coordinate origin, Coordinate destination, Movement movement);
 
     public List<Coordinate> getCoordinates(Coordinate origin, Coordinate destination) {
         return origin.getInBetween(destination);

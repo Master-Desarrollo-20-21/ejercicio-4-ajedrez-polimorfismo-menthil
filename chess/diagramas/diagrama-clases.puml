@@ -32,7 +32,7 @@ Player ..> Console
 
 Class Console
 
-Class Color
+Enum Color
 
 Class Square
 
@@ -40,17 +40,20 @@ Square *--> Piece
 Square *--> Color
 Square *--> Coordinate
 Square ..> Console
+Square ..> Movement
 
 Class Coordinate
 
 Coordinate ..> Console
 Coordinate ..> LimitedIntDialog
 
+Enum Movement
+
 Class Piece
 
 Piece *--> Color
 Piece --> Coordinate
-Piece --> Square
+Piece --> Movement
 
 Class King
 

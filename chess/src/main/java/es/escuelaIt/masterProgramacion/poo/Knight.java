@@ -14,14 +14,11 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Coordinate origin, Coordinate destination, Square square) {
-        if (origin.inColumn(destination) || origin.inRow(destination) || origin.inDiagonal(destination))
+    public boolean isValidMovement(Coordinate origin, Coordinate destination, Movement movement) {
+        if (origin.inColumn(destination) || origin.inRow(destination) || origin.inDiagonal(destination)) {
             return false;
-        if (origin.getDistance(destination) != 3)
-            return false;
-        if (!square.isEmpty() && square.getPiece().getColor() == this.color)
-            return false;
-        return true;
+        }
+        return origin.getDistance(destination) == 3;
     }
 
     @Override

@@ -11,12 +11,8 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Coordinate origin, Coordinate destination, Square square) {
-        if (!origin.inDiagonal(destination))
-            return false;
-        if (!square.isEmpty() && square.getPiece().getColor() == this.color)
-            return false;
-        return true;
+    public boolean isValidMovement(Coordinate origin, Coordinate destination, Movement movement) {
+        return origin.inDiagonal(destination);
     }
 
     @Override

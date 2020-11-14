@@ -42,7 +42,17 @@ public class Square {
     }
     
     public boolean isValidMovement(Square square) {
-        return this.piece.isValidMovement(this.coordinate, square.coordinate, square);
+        Movement movement;
+        if (square.isEmpty()) {
+            movement = Movement.EMPTY_SQUARE;
+        } else {
+            if (!square.piece.isColor(this.piece.getColor())) {
+                movement = Movement.CAPTURE;
+            } else {
+                return false;
+            }
+        }
+        return this.piece.isValidMovement(this.coordinate, square.coordinate, movement);
     }
     
     public void move(Square square) {
