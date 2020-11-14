@@ -12,6 +12,7 @@ public class King extends Piece {
 
     @Override
     public boolean isValidMovement(Movement movement) {
+        assert movement != null;
         if (movement.getDistance() != 1) {
             return false;
         }
@@ -20,7 +21,7 @@ public class King extends Piece {
 
     @Override
     public boolean isKing(Color color) {
-        return this.color == color;
+        return this.isColor(color);
     }
 
 }

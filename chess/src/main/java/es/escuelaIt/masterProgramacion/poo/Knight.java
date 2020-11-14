@@ -12,6 +12,7 @@ public class Knight extends Piece {
 
     @Override
     public boolean isValidMovement(Movement movement) {
+        assert movement != null;
         if (movement.inColumn() || movement.inRow() || movement.inDiagonal()) {
             return false;
         }

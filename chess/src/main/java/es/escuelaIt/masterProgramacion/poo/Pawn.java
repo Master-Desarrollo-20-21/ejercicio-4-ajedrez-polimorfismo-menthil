@@ -12,11 +12,13 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMovement(Movement movement) {
+        assert movement != null;
         return this.isValidColumnMovement(movement) ||
                this.isValidDiagonalMovement(movement);
     }
 
     private boolean isValidColumnMovement(Movement movement) {
+        assert movement != null;
         if (!movement.inColumn()) {
             return false;
         }
@@ -40,6 +42,7 @@ public class Pawn extends Piece {
     }
 
     private boolean isValidDiagonalMovement(Movement movement) {
+        assert movement != null;
         if (!movement.inDiagonal()) {
             return false;
         }

@@ -23,28 +23,18 @@ public abstract class Piece {
         this.symbol = new String(Character.toChars(colorUnicode));
     }
 
-    public Piece(Color color, String white, String black) {
-        this(color);
-        String symbol;
-        if (this.color == Color.WHITE) {
-            symbol = white;
-        } else {
-            symbol = black;
-        }
-        this.symbol = symbol;
+	public boolean isColor(Color color) {
+		return this.color.equals(color);
     }
 
-	public boolean isColor(Color color) {
-		return this.color == color;
+    public boolean isColor(Piece piece) {
+        assert piece != null;
+        return this.isColor(piece.color);
     }
 
     public abstract boolean isValidMovement(Movement movement);
     
     public abstract boolean isKing(Color color);
-
-    public Color getColor() {
-        return this.color;
-    }
 
     @Override
     public String toString() {

@@ -15,6 +15,7 @@ public class Square {
     private Coordinate coordinate;
 
     public Square(Coordinate coordinate) {
+        assert coordinate != null;
         this.piece = null;
         this.coordinate = coordinate;
         if ((this.coordinate.getRow() + this.coordinate.getColumn()) % 2 == 0) {
@@ -42,10 +43,12 @@ public class Square {
     }
     
     public boolean isValidMovement(Square square, Movement movement) {
+        assert square != null;
+        assert movement != null;
         if (square.isEmpty()) {
             movement.setType(MovementType.EMPTY_SQUARE);
         } else {
-            if (!square.piece.isColor(this.piece.getColor())) {
+            if (!square.piece.isColor(this.piece)) {
                 movement.setType(MovementType.CAPTURE);
             } else {
                 return false;
@@ -55,6 +58,7 @@ public class Square {
     }
     
     public void move(Square square) {
+        assert square != null;
         square.piece = this.piece;
         this.piece = null;
     }
@@ -64,10 +68,6 @@ public class Square {
             return this.piece.isKing(color);
         }
 		return false;
-    }
-
-    public Piece getPiece() {
-        return this.piece;
     }
 
     public void setPiece(Piece piece) {

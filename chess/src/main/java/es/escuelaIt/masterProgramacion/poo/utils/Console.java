@@ -9,6 +9,7 @@ public class Console {
 			System.in));
 
 	public String readString(String title) {
+		assert title != null;
 		String input = null;
 		boolean ok = false;
 		do {
@@ -24,6 +25,7 @@ public class Console {
 	}
 
 	public int readInt(String title) {
+		assert title != null;
 		int input = 0;
 		boolean ok = false;
 		do {
@@ -42,14 +44,17 @@ public class Console {
 	}
 	
 	public void write(String string) {
+		assert string != null;
 		System.out.print(string);
 	}
 
 	public void writeln(String string) {
+		assert string != null;
 		System.out.println(string);
 	}
 
 	private void writeError(String format) {
+		assert format != null;
 		System.out.println("FORMAT ERROR! "
 				+ "Insert " + format + ".");
 	}

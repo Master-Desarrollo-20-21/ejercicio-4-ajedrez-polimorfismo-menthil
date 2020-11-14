@@ -24,19 +24,23 @@ public class Coordinate {
     }
 	
 	public boolean inRow(Coordinate coordinate){
+        assert coordinate != null;
 		return this.row == coordinate.row;
 	}
 	
 	public boolean inColumn(Coordinate coordinate){
+        assert coordinate != null;
 		return this.column == coordinate.column;
 	}
 	
 	public boolean inDiagonal(Coordinate coordinate){
+        assert coordinate != null;
         return  this.row - this.column == coordinate.row - coordinate.column ||
                 this.row + this.column == coordinate.row + coordinate.column;
     }
     
     public int getDistance(Coordinate coordinate) {
+        assert coordinate != null;
         if (this.inDiagonal(coordinate)) {
             return Math.abs(this.getRow() - coordinate.getRow());
         }
@@ -44,6 +48,7 @@ public class Coordinate {
     }
 
     public List<Coordinate> getInBetween(Coordinate coordinate) {
+        assert coordinate != null;
         assert this.inColumn(coordinate) || this.inRow(coordinate) || this.inDiagonal(coordinate);
         if (this.inColumn(coordinate)) {
             return this.getInBetweenInColumn(coordinate);
@@ -56,6 +61,7 @@ public class Coordinate {
     }
 
     private List<Coordinate> getInBetweenInDiagonal(Coordinate coordinate) {
+        assert coordinate != null;
         assert this.inDiagonal(coordinate);
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate from;
@@ -80,6 +86,7 @@ public class Coordinate {
     }
 
     private List<Coordinate> getInBetweenInRow(Coordinate coordinate) {
+        assert coordinate != null;
         assert this.inRow(coordinate);
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate from;
@@ -98,6 +105,7 @@ public class Coordinate {
     }
 
     private List<Coordinate> getInBetweenInColumn(Coordinate coordinate) {
+        assert coordinate != null;
         assert this.inColumn(coordinate);
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate from;
@@ -116,6 +124,7 @@ public class Coordinate {
     }
 
     public void read(String title) {
+        assert title != null;
         Console console = new Console();
         console.writeln(title);
         this.setRow(new LimitedIntDialog("Row?", Coordinate.DIMENSION).read() - 1);

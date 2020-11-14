@@ -12,8 +12,12 @@ public class Bishop extends Piece {
 
     @Override
     public boolean isValidMovement(Movement movement) {
-        movement.checkPath();
-        return movement.inDiagonal();
+        assert movement != null;
+        if (movement.inDiagonal()) {
+            movement.checkPath();
+            return true;
+        }
+        return false;
     }
 
     @Override

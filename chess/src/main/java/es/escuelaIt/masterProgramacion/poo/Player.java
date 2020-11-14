@@ -11,11 +11,12 @@ public class Player {
     }
 
 	public void move(Board board) {
+        assert board != null;
         Console console = new Console();
-        console.writeln(this + " moves");
         boolean isValid = false;
         Coordinate origin = new Coordinate();
         Coordinate destination = new Coordinate();
+        console.writeln(this + " moves");
         do {
             origin.read("Choose a piece to move:");
             isValid = board.isFull(origin, this.color);

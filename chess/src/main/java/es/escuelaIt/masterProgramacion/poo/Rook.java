@@ -12,8 +12,12 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMovement(Movement movement) {
-        movement.checkPath();
-        return movement.inColumn() || movement.inRow();
+        assert movement != null;
+        if (movement.inColumn() || movement.inRow()) {
+            movement.checkPath();
+            return true;    
+        }
+        return false;
     }
 
     @Override

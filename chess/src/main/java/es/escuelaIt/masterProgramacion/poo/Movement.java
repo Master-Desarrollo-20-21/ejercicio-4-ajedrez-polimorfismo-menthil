@@ -11,18 +11,16 @@ public class Movement {
 
     private MovementType type;
 
-    private boolean checkPath;
+    private List<Coordinate> path;
 
     public Movement(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
         this.origin = origin;
         this.destination = destination;
-        this.checkPath = false;
+        this.path = new ArrayList<>();
         this.type = MovementType.INVALID;
     }
-
-	public void setType(MovementType type) {
-        this.type = type;
-	}
 
 	public int getDistance() {
 		return this.origin.getDistance(this.destination);
@@ -41,7 +39,8 @@ public class Movement {
 	}
 
 	public void checkPath() {
-        this.checkPath = true;
+        assert this.origin.inColumn(this.destination) || this.origin.inRow(this.destination) || this.origin.inDiagonal(this.destination);
+        this.path = this.origin.getInBetween(this.destination);
 	}
 
 	public boolean isEmptySquare() {
@@ -61,9 +60,11 @@ public class Movement {
 	}
 
 	public List<Coordinate> getPath() {
-        if (this.checkPath) {
-            return this.origin.getInBetween(this.destination);
-        }
-        return new ArrayList<>();
+        return this.path;
+	}
+
+	public void setType(MovementType type) {
+        assert type != null;
+        this.type = type;
 	}
 }
