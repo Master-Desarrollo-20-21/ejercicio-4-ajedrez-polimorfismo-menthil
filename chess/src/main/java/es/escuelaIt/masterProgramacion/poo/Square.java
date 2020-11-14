@@ -10,7 +10,7 @@ public class Square {
 
     private Piece piece;
 
-    private String color;
+    private String background;
 
     private Coordinate coordinate;
 
@@ -18,9 +18,9 @@ public class Square {
         this.piece = null;
         this.coordinate = coordinate;
         if ((this.coordinate.getRow() + this.coordinate.getColumn()) % 2 == 0) {
-            this.color = Square.DARK;
+            this.background = Square.DARK;
         } else {
-            this.color = Square.LIGHT;
+            this.background = Square.LIGHT;
         }
     }
 
@@ -30,7 +30,7 @@ public class Square {
             console.writeln("There is no piece in this square");
             return false;
         }
-        if (!this.getPiece().isColor(color)) {
+        if (!this.piece.isColor(color)) {
             console.writeln("This piece is not yours!");
             return false;
         }
@@ -39,16 +39,20 @@ public class Square {
 
 	public boolean isEmpty() {
 		return this.piece == null;
-	}
+    }
+    
+    public boolean isValidMovement(Square square) {
+        return this.piece.isValidMovement(this.coordinate, square.coordinate, square);
+    }
     
     public void move(Square square) {
-        square.setPiece(this.getPiece());
+        square.piece = this.piece;
         this.piece = null;
     }
 
 	public boolean isKing(Color color) {
         if (!this.isEmpty()) {
-            return this.getPiece().isKing(color);
+            return this.piece.isKing(color);
         }
 		return false;
     }
@@ -64,7 +68,7 @@ public class Square {
     @Override
     public String toString() {
         if (this.isEmpty())
-            return this.color;
+            return this.background;
         return this.piece.toString();
     }
 }
