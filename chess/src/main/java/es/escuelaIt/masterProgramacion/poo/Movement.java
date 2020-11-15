@@ -64,7 +64,8 @@ public class Movement {
 	}
 
 	public void setType(MovementType type) {
-        assert type != null;
+		assert type != null;
+		assert type == MovementType.CAPTURE || type == MovementType.EMPTY_SQUARE;
         this.type = type;
 	}
 }
