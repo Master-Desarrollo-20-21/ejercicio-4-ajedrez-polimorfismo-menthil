@@ -41,7 +41,7 @@ public class Chess {
     }
 
     private boolean isCheckmate() {
-        return this.board.isCheckmate(getCurrentPlayer().getColor());
+        return this.board.isCheckmate(this.getCurrentPlayer().getColor());
     }
 
     public boolean isResumed() {
