@@ -12,9 +12,9 @@ Chess ..> Console
 Class Board
 
 Board *--> Square
-Board --> Coordinate
-Board --> Color
-Board --> Piece
+Board ..> Coordinate
+Board ..> Color
+Board ..> Piece
 Board ..> King
 Board ..> Queen
 Board ..> Rook
@@ -22,12 +22,11 @@ Board ..> Bishop
 Board ..> Knight
 Board ..> Pawn
 Board ..> Console
-Board ..> Movement
 
 Class Player
 
 Player *--> Color
-Player --> Board
+Player ..> Board
 Player ..> Coordinate
 Player ..> Console
 
@@ -37,11 +36,11 @@ Enum Color
 
 Class Square
 
-Square *--> Piece
+Square --> Piece
 Square *--> Coordinate
-Square --> Color
+Square ..> Color
 Square ..> Console
-Square --> Movement
+Square ..> Movement
 Square ..> MovementType
 
 Class Coordinate
@@ -52,7 +51,7 @@ Coordinate ..> LimitedIntDialog
 Class Piece
 
 Piece *--> Color
-Piece --> Movement
+Piece ..> Movement
 
 Class King
 

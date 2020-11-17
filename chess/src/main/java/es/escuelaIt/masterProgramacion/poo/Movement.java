@@ -13,13 +13,13 @@ public class Movement {
 
     private List<Coordinate> path;
 
-    public Movement(Coordinate origin, Coordinate destination) {
+    public Movement(Coordinate origin, Coordinate destination, MovementType type) {
         assert origin != null;
         assert destination != null;
         this.origin = origin;
         this.destination = destination;
         this.path = new ArrayList<>();
-        this.type = MovementType.INVALID;
+        this.type = type;
     }
 
 	public int getDistance() {
@@ -61,11 +61,5 @@ public class Movement {
 
 	public List<Coordinate> getPath() {
         return this.path;
-	}
-
-	public void setType(MovementType type) {
-		assert type != null;
-		assert type == MovementType.CAPTURE || type == MovementType.EMPTY_SQUARE;
-        this.type = type;
 	}
 }

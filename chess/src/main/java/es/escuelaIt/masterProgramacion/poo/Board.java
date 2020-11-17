@@ -61,9 +61,10 @@ public class Board {
 	public boolean isValidMovement(Coordinate origin, Coordinate destination) {
         assert origin != null;
         assert destination != null;
-        Movement movement = new Movement(origin, destination);
-        if (this.getSquare(origin).isValidMovement(this.getSquare(destination), movement)) {
-            return this.isEmptyPath(movement.getPath());
+        Square originSquare = this.getSquare(origin);
+        Square destinationSquare = this.getSquare(destination);
+        if (originSquare.isValidMovement(destinationSquare)) {
+            return this.isEmptyPath(originSquare.getPath(destinationSquare));
         }
         return false;
     }

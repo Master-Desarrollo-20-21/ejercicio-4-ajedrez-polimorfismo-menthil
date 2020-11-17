@@ -1,5 +1,7 @@
 package es.escuelaIt.masterProgramacion.poo;
 
+import java.util.List;
+
 import es.escuelaIt.masterProgramacion.poo.utils.Console;
 
 public class Square {
@@ -42,21 +44,53 @@ public class Square {
 		return this.piece == null;
     }
     
-    public boolean isValidMovement(Square square, Movement movement) {
+    public boolean isValidMovement(Square square) {
         assert square != null;
-        assert movement != null;
+        Movement movement = null;
         if (square.isEmpty()) {
-            movement.setType(MovementType.EMPTY_SQUARE);
+            movement = this.createEmptyMovement(square);
         } else {
             if (!square.piece.isColor(this.piece)) {
-                movement.setType(MovementType.CAPTURE);
+                movement = this.createCaptureMovement(square);
             } else {
                 return false;
             }
         }
         return this.piece.isValidMovement(movement);
     }
+
+    private Movement createEmptyMovement(Square square) {
+        assert square != null;
+        assert square.isEmpty();
+        return this.createMovement(square, MovementType.EMPTY_SQUARE);
+    }
+
+    private Movement createCaptureMovement(Square square) {
+        assert square != null;
+        assert !square.piece.isColor(this.piece);
+        return this.createMovement(square, MovementType.CAPTURE);
+    }
+
+    private Movement createMovement(Square square, MovementType movementType) {
+        assert square != null;
+        return new Movement(this.getCoordinate(), square.getCoordinate(), movementType);
+    }
     
+    private Movement createMovement(Square square) {
+        assert square != null;
+        assert square.isEmpty() || !square.piece.isColor(this.piece);
+        if (square.isEmpty()) {
+            return this.createEmptyMovement(square);
+        }
+        return this.createCaptureMovement(square);
+    }
+
+	public List<Coordinate> getPath(Square square) {
+        assert square != null;
+        assert this.isValidMovement(square);
+        return this.createMovement(square).getPath();
+    }
+
     public void move(Square square) {
         assert square != null;
         square.piece = this.piece;
@@ -68,6 +102,10 @@ public class Square {
             return this.piece.isKing(color);
         }
 		return false;
+    }
+    
+    private Coordinate getCoordinate() {
+        return this.coordinate;
     }
 
     public void setPiece(Piece piece) {
