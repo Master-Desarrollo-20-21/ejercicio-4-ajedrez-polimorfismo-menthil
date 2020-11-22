@@ -61,8 +61,6 @@ public class Coordinate {
     }
 
     private List<Coordinate> getInBetweenInDiagonal(Coordinate coordinate) {
-        assert coordinate != null;
-        assert this.inDiagonal(coordinate);
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate from;
         Coordinate to;
@@ -86,8 +84,6 @@ public class Coordinate {
     }
 
     private List<Coordinate> getInBetweenInRow(Coordinate coordinate) {
-        assert coordinate != null;
-        assert this.inRow(coordinate);
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate from;
         Coordinate to;
@@ -105,8 +101,6 @@ public class Coordinate {
     }
 
     private List<Coordinate> getInBetweenInColumn(Coordinate coordinate) {
-        assert coordinate != null;
-        assert this.inColumn(coordinate);
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate from;
         Coordinate to;
@@ -149,17 +143,22 @@ public class Coordinate {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if (this == obj) {
+            return true;
+        }
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+        }
+		if (getClass() != obj.getClass()){
 			return false;
+        }
 		Coordinate other = (Coordinate) obj;
-		if (this.column != other.column)
-			return false;
-		if (this.row != other.row)
-			return false;
+		if (this.column != other.column) {
+            return false;
+        }
+		if (this.row != other.row){
+            return false;
+        }
 		return true;
 	}
 }

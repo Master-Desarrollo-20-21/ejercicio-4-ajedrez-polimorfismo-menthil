@@ -80,7 +80,7 @@ Piece <|-- Pawn
 
 Class Movement
 
-Movement *--> Board
+Movement --> Board
 Movement *--> Coordinate
 Movement *--> MovementType
 Movement ..> Piece

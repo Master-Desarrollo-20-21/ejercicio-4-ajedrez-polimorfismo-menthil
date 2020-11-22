@@ -44,6 +44,7 @@ public class Square {
 
     public MovementType getMovementType(Square square) {
         assert !this.isEmpty();
+        assert square != null;
         if (square.isEmpty()) {
             return MovementType.EMPTY_SQUARE;
         }
@@ -60,10 +61,10 @@ public class Square {
     }
 
     public boolean isKing(Color color) {
-        if (!this.isEmpty()) {
-            return this.piece.isKing(color);
+        if (this.isEmpty()) {
+            return false;
         }
-        return false;
+        return this.piece.isKing(color);
     }
 
 	public Piece getPiece() {

@@ -21,11 +21,6 @@ public class King extends Piece {
     }
 
     @Override
-    public boolean checkPath() {
-        return false;
-    }
-
-    @Override
     public boolean isKing(Color color) {
         return this.isColor(color);
     }
