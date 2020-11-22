@@ -58,17 +58,11 @@ public class Board {
         return this.getSquare(origin).isFull(color);
 	}
 
-	public boolean isValidMovement(Coordinate origin, Coordinate destination) {
-        assert origin != null;
-        assert destination != null;
-        Movement movement = new Movement(this.getSquare(origin), this.getSquare(destination));
-        if (movement.isValid()) {
-            return this.isEmptyPath(movement.getPath());
-        }
-        return false;
-    }
+	public MovementType getMovementType(Coordinate origin, Coordinate destination) {
+		return this.getSquare(origin).getMovementType(this.getSquare(destination));
+	}
 
-	private boolean isEmptyPath(List<Coordinate> coordinates) {
+	public boolean isEmptyPath(List<Coordinate> coordinates) {
         for (Coordinate coordinate : coordinates) {
             if (!this.getSquare(coordinate).isEmpty())
                 return false;
@@ -79,7 +73,6 @@ public class Board {
 	public void move(Coordinate origin, Coordinate destination) {
         assert origin != null;
         assert destination != null;
-        assert this.isValidMovement(origin, destination);
         this.getSquare(origin).move(this.getSquare(destination));
     }
 
@@ -97,6 +90,10 @@ public class Board {
     private Square getSquare(Coordinate coordinate) {
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }
+
+	public Piece getPiece(Coordinate coordinate) {
+		return this.getSquare(coordinate).getPiece();
+	}
     
     private void setPiece(Coordinate coordinate, Piece piece) {
         this.getSquare(coordinate).setPiece(piece);

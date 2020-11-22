@@ -22,6 +22,7 @@ Board ..> Bishop
 Board ..> Knight
 Board ..> Pawn
 Board ..> Console
+Board ..> MovementType
 
 Class Player
 
@@ -29,6 +30,7 @@ Player *--> Color
 Player ..> Board
 Player ..> Coordinate
 Player ..> Console
+Player ..> Movement
 
 Class Console
 
@@ -40,7 +42,6 @@ Square --> Piece
 Square *--> Coordinate
 Square ..> Color
 Square ..> Console
-Square ..> Movement
 Square ..> MovementType
 
 Class Coordinate
@@ -80,6 +81,7 @@ Pawn ..> Coordinate
 
 Class Movement
 
+Movement *--> Board
 Movement *--> Coordinate
 Movement *--> MovementType
 

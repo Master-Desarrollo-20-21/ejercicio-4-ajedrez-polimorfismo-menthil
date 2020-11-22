@@ -5,49 +5,55 @@ import java.util.List;
 
 public class Movement {
     
-    private Square origin;
+    private Coordinate origin;
 
-    private Square destination;
+	private Coordinate destination;
+	
+	private Board board;
 
     private MovementType type;
 
     private List<Coordinate> path;
 
-    public Movement(Square origin, Square destination) {
+    public Movement(Coordinate origin, Coordinate destination, Board board) {
         assert origin != null;
         assert destination != null;
         this.origin = origin;
-        this.destination = destination;
+		this.destination = destination;
+		this.board = board;
         this.path = new ArrayList<>();
-        this.type = this.origin.getMovementType(this.destination);
+        this.type = this.board.getMovementType(this.origin, this.destination);
     }
 
 	public boolean isValid() {
 		if (this.type.equals(MovementType.INVALID)) {
 			return false;
 		}
-		return this.origin.getPiece().isValidMovement(this);
+		if (!this.board.getPiece(this.origin).isValidMovement(this)) {
+			return false;
+		}
+		return this.board.isEmptyPath(this.getPath());
 	}
 
 	public int getDistance() {
-		return this.origin.getCoordinate().getDistance(this.destination.getCoordinate());
+		return this.origin.getDistance(this.destination);
 	}
 
 	public boolean inColumn() {
-		return this.origin.getCoordinate().inColumn(this.destination.getCoordinate());
+		return this.origin.inColumn(this.destination);
 	}
 
 	public boolean inRow() {
-		return this.origin.getCoordinate().inRow(this.destination.getCoordinate());
+		return this.origin.inRow(this.destination);
 	}
 
 	public boolean inDiagonal() {
-		return this.origin.getCoordinate().inDiagonal(this.destination.getCoordinate());
+		return this.origin.inDiagonal(this.destination);
 	}
 
 	public void checkPath() {
-        assert this.origin.getCoordinate().inColumn(this.destination.getCoordinate()) || this.origin.getCoordinate().inRow(this.destination.getCoordinate()) || this.origin.getCoordinate().inDiagonal(this.destination.getCoordinate());
-        this.path = this.origin.getCoordinate().getInBetween(this.destination.getCoordinate());
+        assert this.origin.inColumn(this.destination) || this.origin.inRow(this.destination) || this.origin.inDiagonal(this.destination);
+        this.path = this.origin.getInBetween(this.destination);
 	}
 
 	public boolean isEmptySquare() {
@@ -55,7 +61,7 @@ public class Movement {
 	}
 
 	public int getOriginRow() {
-		return this.origin.getCoordinate().getRow();
+		return this.origin.getRow();
 	}
 
 	public boolean isCapture() {
@@ -63,7 +69,7 @@ public class Movement {
 	}
 
 	public int getDestinationRow() {
-		return this.destination.getCoordinate().getRow();
+		return this.destination.getRow();
 	}
 
 	public List<Coordinate> getPath() {

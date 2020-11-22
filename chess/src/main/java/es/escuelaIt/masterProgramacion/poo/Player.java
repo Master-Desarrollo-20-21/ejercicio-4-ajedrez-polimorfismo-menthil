@@ -22,7 +22,8 @@ public class Player {
             isValid = board.isFull(origin, this.color);
             if (isValid) {
                 destination.read("Choose an square to move:");
-                isValid = board.isValidMovement(origin, destination);
+                Movement movement = new Movement(origin, destination, board);
+                isValid = movement.isValid();
             }
             if (!isValid) {
                 console.writeln("Invalid movement!");
