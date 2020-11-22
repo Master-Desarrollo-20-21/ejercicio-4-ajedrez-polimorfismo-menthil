@@ -7,13 +7,8 @@ public abstract class Piece {
 
     protected String symbol;
 
-    public Piece(Color color) {
-        this.color = color;
-        this.symbol = " ";
-    }
-
     public Piece(Color color, int whiteUnicode, int blackUnicode) {
-        this(color);
+        this.color = color;
         int colorUnicode;
         if (this.color == Color.WHITE) {
             colorUnicode = whiteUnicode;
@@ -42,18 +37,4 @@ public abstract class Piece {
     public String toString() {
         return this.symbol + "_";
     }
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Piece other = (Piece) obj;
-		if (this.color != other.color)
-			return false;
-		return true;
-	}
 }

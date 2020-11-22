@@ -5,42 +5,49 @@ import java.util.List;
 
 public class Movement {
     
-    private Coordinate origin;
+    private Square origin;
 
-    private Coordinate destination;
+    private Square destination;
 
     private MovementType type;
 
     private List<Coordinate> path;
 
-    public Movement(Coordinate origin, Coordinate destination, MovementType type) {
+    public Movement(Square origin, Square destination) {
         assert origin != null;
         assert destination != null;
         this.origin = origin;
         this.destination = destination;
         this.path = new ArrayList<>();
-        this.type = type;
+        this.type = this.origin.getMovementType(this.destination);
     }
 
+	public boolean isValid() {
+		if (this.type.equals(MovementType.INVALID)) {
+			return false;
+		}
+		return this.origin.getPiece().isValidMovement(this);
+	}
+
 	public int getDistance() {
-		return this.origin.getDistance(this.destination);
+		return this.origin.getCoordinate().getDistance(this.destination.getCoordinate());
 	}
 
 	public boolean inColumn() {
-		return this.origin.inColumn(this.destination);
+		return this.origin.getCoordinate().inColumn(this.destination.getCoordinate());
 	}
 
 	public boolean inRow() {
-		return this.origin.inRow(this.destination);
+		return this.origin.getCoordinate().inRow(this.destination.getCoordinate());
 	}
 
 	public boolean inDiagonal() {
-		return this.origin.inDiagonal(this.destination);
+		return this.origin.getCoordinate().inDiagonal(this.destination.getCoordinate());
 	}
 
 	public void checkPath() {
-        assert this.origin.inColumn(this.destination) || this.origin.inRow(this.destination) || this.origin.inDiagonal(this.destination);
-        this.path = this.origin.getInBetween(this.destination);
+        assert this.origin.getCoordinate().inColumn(this.destination.getCoordinate()) || this.origin.getCoordinate().inRow(this.destination.getCoordinate()) || this.origin.getCoordinate().inDiagonal(this.destination.getCoordinate());
+        this.path = this.origin.getCoordinate().getInBetween(this.destination.getCoordinate());
 	}
 
 	public boolean isEmptySquare() {
@@ -48,7 +55,7 @@ public class Movement {
 	}
 
 	public int getOriginRow() {
-		return this.origin.getRow();
+		return this.origin.getCoordinate().getRow();
 	}
 
 	public boolean isCapture() {
@@ -56,7 +63,7 @@ public class Movement {
 	}
 
 	public int getDestinationRow() {
-		return this.destination.getRow();
+		return this.destination.getCoordinate().getRow();
 	}
 
 	public List<Coordinate> getPath() {
