@@ -11,12 +11,9 @@ public class Rook extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Movement movement) {
-        assert movement != null;
-        if (movement.inColumn() || movement.inRow()) {
-            movement.checkPath();
-            return true;    
-        }
-        return false;
+    public boolean isValidMovement(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
+        return origin.inColumn(destination) || origin.inRow(destination);
     }
 }

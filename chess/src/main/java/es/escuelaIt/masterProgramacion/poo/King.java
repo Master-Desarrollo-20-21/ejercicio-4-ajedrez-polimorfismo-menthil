@@ -11,17 +11,22 @@ public class King extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Movement movement) {
-        assert movement != null;
-        if (movement.getDistance() != 1) {
+    public boolean isValidMovement(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
+        if (origin.getDistance(destination) != 1) {
             return false;
         }
-        return movement.inColumn() || movement.inRow() || movement.inDiagonal();
+        return origin.inColumn(destination) || origin.inRow(destination) || origin.inDiagonal(destination);
+    }
+
+    @Override
+    public boolean checkPath() {
+        return false;
     }
 
     @Override
     public boolean isKing(Color color) {
         return this.isColor(color);
     }
-
 }

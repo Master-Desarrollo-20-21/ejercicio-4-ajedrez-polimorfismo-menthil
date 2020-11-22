@@ -27,7 +27,17 @@ public abstract class Piece {
         return this.isColor(piece.color);
     }
 
-    public abstract boolean isValidMovement(Movement movement);
+    public abstract boolean isValidMovement(Coordinate origin, Coordinate destination);
+
+    public boolean isValidCapture(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
+        return this.isValidMovement(origin, destination);
+    }
+
+    public boolean checkPath() {
+        return true;
+    }
     
     public boolean isKing(Color color) {
         return false;

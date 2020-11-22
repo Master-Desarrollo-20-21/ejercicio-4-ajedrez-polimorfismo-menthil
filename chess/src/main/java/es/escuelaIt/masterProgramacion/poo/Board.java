@@ -59,10 +59,13 @@ public class Board {
 	}
 
 	public MovementType getMovementType(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
 		return this.getSquare(origin).getMovementType(this.getSquare(destination));
 	}
 
 	public boolean isEmptyPath(List<Coordinate> coordinates) {
+        assert coordinates != null;
         for (Coordinate coordinate : coordinates) {
             if (!this.getSquare(coordinate).isEmpty())
                 return false;
@@ -92,6 +95,7 @@ public class Board {
     }
 
 	public Piece getPiece(Coordinate coordinate) {
+        assert coordinate != null;
 		return this.getSquare(coordinate).getPiece();
 	}
     

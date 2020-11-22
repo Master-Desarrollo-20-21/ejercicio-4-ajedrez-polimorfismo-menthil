@@ -66,10 +66,6 @@ public class Square {
         return false;
     }
 
-    public Coordinate getCoordinate() {
-        return this.coordinate;
-    }
-
 	public Piece getPiece() {
 		return this.piece;
 	}

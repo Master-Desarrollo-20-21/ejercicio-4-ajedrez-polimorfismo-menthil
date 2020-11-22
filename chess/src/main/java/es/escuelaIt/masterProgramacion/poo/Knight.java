@@ -11,11 +11,17 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Movement movement) {
-        assert movement != null;
-        if (movement.inColumn() || movement.inRow() || movement.inDiagonal()) {
+    public boolean isValidMovement(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
+        if (origin.inColumn(destination) || origin.inRow(destination) || origin.inDiagonal(destination)) {
             return false;
         }
-        return movement.getDistance() == 3;
+        return origin.getDistance(destination) == 3;
+    }
+
+    @Override
+    public boolean checkPath() {
+        return false;
     }
 }

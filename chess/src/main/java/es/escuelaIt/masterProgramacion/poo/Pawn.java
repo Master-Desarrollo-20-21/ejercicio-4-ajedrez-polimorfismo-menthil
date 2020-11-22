@@ -11,48 +11,38 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isValidMovement(Movement movement) {
-        assert movement != null;
-        return this.isValidColumnMovement(movement) ||
-               this.isValidDiagonalMovement(movement);
-    }
-
-    private boolean isValidColumnMovement(Movement movement) {
-        assert movement != null;
-        if (!movement.inColumn()) {
+    public boolean isValidMovement(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
+        if (!origin.inColumn(destination)) {
             return false;
         }
-        if (!movement.isEmptySquare()) {
-            return false;
-        }
-        int distance = movement.getDistance();
-        if (distance > 2 || distance == 0) {
+        int distance = origin.getDistance(destination);
+        if (distance > 2) {
             return false;
         }
         if (distance == 2) {
-            movement.checkPath();
-            if (this.color == Color.WHITE && movement.getOriginRow() != 1) {
+            if (this.color == Color.WHITE && origin.getRow() != 1) {
                 return false;
             }
-            if (this.color == Color.BLACK && movement.getOriginRow() != Coordinate.DIMENSION - 2) {
+            if (this.color == Color.BLACK && origin.getRow() != Coordinate.DIMENSION - 2) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean isValidDiagonalMovement(Movement movement) {
-        assert movement != null;
-        if (!movement.inDiagonal()) {
-            return false;
-        }
-        if (!movement.isCapture()) {
+    @Override
+    public boolean isValidCapture(Coordinate origin, Coordinate destination) {
+        assert origin != null;
+        assert destination != null;
+        if (!origin.inDiagonal(destination)) {
             return false;
         }
         if (this.color == Color.WHITE) {
-            return  movement.getDistance() == 1 && (movement.getOriginRow() + 1) == movement.getDestinationRow();
+            return origin.getDistance(destination) == 1 && (origin.getRow() + 1) == destination.getRow();
         } else {
-            return  movement.getDistance() == 1 && (movement.getOriginRow() - 1) == movement.getDestinationRow();
+            return origin.getDistance(destination) == 1 && (origin.getRow() - 1) == destination.getRow();
         }
     }
 }

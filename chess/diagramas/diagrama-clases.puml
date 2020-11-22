@@ -52,7 +52,7 @@ Coordinate ..> LimitedIntDialog
 Class Piece
 
 Piece *--> Color
-Piece ..> Movement
+Piece ..> Coordinate
 
 Class King
 
@@ -77,13 +77,13 @@ Piece <|-- Knight
 Class Pawn
 
 Piece <|-- Pawn
-Pawn ..> Coordinate
 
 Class Movement
 
 Movement *--> Board
 Movement *--> Coordinate
 Movement *--> MovementType
+Movement ..> Piece
 
 Enum MovementType 
 

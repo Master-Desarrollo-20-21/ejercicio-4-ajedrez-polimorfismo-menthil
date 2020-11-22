@@ -17,7 +17,8 @@ public class Movement {
 
     public Movement(Coordinate origin, Coordinate destination, Board board) {
         assert origin != null;
-        assert destination != null;
+		assert destination != null;
+		assert board != null;
         this.origin = origin;
 		this.destination = destination;
 		this.board = board;
@@ -29,50 +30,19 @@ public class Movement {
 		if (this.type.equals(MovementType.INVALID)) {
 			return false;
 		}
-		if (!this.board.getPiece(this.origin).isValidMovement(this)) {
-			return false;
+		Piece piece = this.board.getPiece(this.origin);
+		boolean isValid;
+		if (this.type.equals(MovementType.CAPTURE)) {
+			isValid = piece.isValidCapture(this.origin, this.destination);
+		} else {
+			isValid = piece.isValidMovement(this.origin, this.destination);
 		}
-		return this.board.isEmptyPath(this.getPath());
-	}
-
-	public int getDistance() {
-		return this.origin.getDistance(this.destination);
-	}
-
-	public boolean inColumn() {
-		return this.origin.inColumn(this.destination);
-	}
-
-	public boolean inRow() {
-		return this.origin.inRow(this.destination);
-	}
-
-	public boolean inDiagonal() {
-		return this.origin.inDiagonal(this.destination);
-	}
-
-	public void checkPath() {
-        assert this.origin.inColumn(this.destination) || this.origin.inRow(this.destination) || this.origin.inDiagonal(this.destination);
-        this.path = this.origin.getInBetween(this.destination);
-	}
-
-	public boolean isEmptySquare() {
-		return this.type.equals(MovementType.EMPTY_SQUARE);
-	}
-
-	public int getOriginRow() {
-		return this.origin.getRow();
-	}
-
-	public boolean isCapture() {
-		return this.type.equals(MovementType.CAPTURE);
-	}
-
-	public int getDestinationRow() {
-		return this.destination.getRow();
-	}
-
-	public List<Coordinate> getPath() {
-        return this.path;
+		if (isValid) {
+			if (piece.checkPath()) {
+				this.path = this.origin.getInBetween(this.destination); 
+			}
+			return this.board.isEmptyPath(this.path);
+		}
+		return false;
 	}
 }
